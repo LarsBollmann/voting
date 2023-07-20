@@ -103,6 +103,10 @@ export const registerWebsocketEventHandlers = async (ws: ExtendedWebSocket) => {
         db.startProposing(ws.room);
         break;
       }
+      case WSClientMessageTypes.PING: {
+        ws.send(JSON.stringify({ type: WSClientMessageTypes.PONG, payload: '' }));
+        break;
+      }
     }
   });
 

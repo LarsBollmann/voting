@@ -150,7 +150,7 @@ client.startProposing = async (roomId) => {
 };
 
 export const connectToRedis = async () => {
-  if (client.isReady) {
+  if (client.isOpen) {
     return client;
   }
   console.log('Connecting to Redis...');

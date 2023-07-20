@@ -20,12 +20,14 @@ export enum WSClientMessageTypes {
   VOTE = 'VOTE',
   START_VOTING = 'START_VOTING',
   SHOW_RESULTS = 'SHOW_RESULTS',
-  RESET = 'RESET'
+  RESET = 'RESET',
+  PING = 'PING'
 }
 
 export enum WSServerMessageTypes {
   SEND_STATE = 'SEND_STATE',
-  ERROR = 'ERROR'
+  ERROR = 'ERROR',
+  PONG = 'PONG'
 }
 
 export type Screen = 'lobby' | 'proposing' | 'voting' | 'results' | '';

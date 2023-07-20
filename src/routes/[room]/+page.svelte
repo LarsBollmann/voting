@@ -15,13 +15,28 @@
 
   let wsError: string | null = null;
 
-  onMount(() => {
+  const ping = () => {
+    if (ws?.readyState === WebSocket.OPEN) {
+      ws.send(
+        JSON.stringify({
+          type: WSClientMessageTypes.PING,
+          payload: null
+        })
+      );
+    }
+    setTimeout(() => {
+      ping();
+    }, 1000 * 30);
+  };
+
+  const connectWebSocket = () => {
     const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
     ws = new WebSocket(`${protocol}//${window.location.host}/websocket?room=${state.roomId}`);
 
-    ws.addEventListener('close', () => {
+    ws.onclose = () => {
       ws = null;
-    });
+      connectWebSocket();
+    };
 
     ws.addEventListener('message', (event) => {
       let message = JSON.parse(event.data);
@@ -36,6 +51,12 @@
           break;
       }
     });
+
+    ping();
+  };
+
+  onMount(() => {
+    connectWebSocket();
   });
 
   onDestroy(() => {
@@ -48,6 +69,8 @@
 <div class="m-3 flex flex-col items-center">
   {#if wsError}
     <div class="text-red-500">{wsError}</div>
+  {:else if !ws || ws.readyState !== WebSocket.OPEN}
+    <div class="text-gray-500">Connecting...</div>
   {:else}
     {#if state.screen == 'lobby'}
       <LobbyScreen bind:ws bind:state />
