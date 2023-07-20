@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+button.primary,
+button.secondary {
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button.primary:active {
+  transform: translateY(1px);
+  background-color: var(--secondary);
+  color: var(--text);
+}
+
+button.secondary:active {
+  transform: translateY(1px);
+  background-color: var(--primary);
+  color: var(--background);
+}
+
+input {
+  color: var(--background);
+  background-color: var(--text);
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.primary {
+  background-color: var(--primary);
+  color: var(--background);
+}
+
+.secondary {
+  background-color: var(--secondary);
+  color: var(--text);
+}
