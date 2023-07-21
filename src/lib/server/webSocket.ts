@@ -104,7 +104,7 @@ export const registerWebsocketEventHandlers = async (ws: ExtendedWebSocket) => {
         break;
       }
       case WSClientMessageTypes.PING: {
-        ws.send(JSON.stringify({ type: WSClientMessageTypes.PONG, payload: '' }));
+        ws.send(JSON.stringify({ type: WSServerMessageTypes.PONG, payload: '' }));
         break;
       }
     }
