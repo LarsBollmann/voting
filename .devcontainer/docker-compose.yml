@@ -11,7 +11,7 @@ services:
     # Overrides default command so things don't shut down after the process ends.
     command: /bin/sh -c "while sleep 1000; do :; done"
   redis:
-    image: redis-stack:latest
+    image: redis/redis-stack:latest
     restart: always
     ports:
       - 8001:8001
