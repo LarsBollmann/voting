@@ -6,13 +6,16 @@ import { nanoid } from 'nanoid';
 
 export const load = async ({ params, locals, request, cookies }) => {
   const room = (await locals.db?.json.get(params.room)) as Room;
-console.log(room);
+  console.log(room);
 
   let userId = parseCookie(request.headers.get('cookie')).userId;
 
   if (!userId) {
     userId = nanoid(8);
-    cookies.set('userId', userId);
+    cookies.set('userId', userId, {
+      path: '/',
+      expires: new Date(Date.now() + 1000 * 60 * 60 * 24)
+    });
   }
 
   if (!room) {
