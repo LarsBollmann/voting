@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   dev:
-    image: mcr.microsoft.com/vscode/devcontainers/typescript-node
+    image: mcr.microsoft.com/vscode/devcontainers/typescript-node:20
     volumes:
       # Mounts the project folder to '/workspace'. While this file is in .devcontainer,
       # mounts are relative to the first file in the list, which is a level up.
